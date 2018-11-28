@@ -1,2 +1,4 @@
 Gopkg.lock
 vendor
+blog.db
+public/image
