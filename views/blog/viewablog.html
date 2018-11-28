@@ -1,0 +1,33 @@
+{{define "blog_view"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu" .user}}
+    <main class="main">
+
+        <section class="container">
+                {{$blog := $.blog}}
+                <div class="row">
+                        <div class="col-md-9">
+                          <!-- List bài đăng mới -->
+                          <h2>{{$blog.Title}}</h2>
+                          <div> 
+                              <p>{{$blog.Content}}</p>
+                          </div>
+                            <a href="/blog/edit/{{$blog.ID}}" class="btn btn-primary">Edit The Post</a>
+                            <a href="/blog/delete/{{$blog.ID}}" class="btn btn-secondary">Delete The Tost</a>
+                        </div>
+                        <div class="col-md-3">
+                          <!-- Sidebar - khu vực chứa widget -->
+                        </div>
+                      </div>
+                     
+        </section>
+    </main>
+{{template "footer"}}
+</body>
+</html>
+    {{end}}

@@ -1,0 +1,29 @@
+{{define "blog_edit"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu" .user}}
+    <main class="main">
+        <section class="py-5 container">
+                {{$blog := $.blog}}
+            <form method="POST" action="/blog/edit/{{$blog.ID}}">
+                    <div class="form-group">
+                            <input type="text" class="form-control" name="Title" value="{{$blog.Title}}">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="Description" rows="3">{{$blog.Description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="Content" rows="3">{{$blog.Content}}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+        </section>
+    </main>
+        {{template "footer"}}
+    </body>
+    </html>
+    {{end}}

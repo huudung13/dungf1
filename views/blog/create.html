@@ -1,0 +1,28 @@
+{{define "blog_create"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu" .user}}
+    <main class="main">
+        <section class="py-5 container">
+            <form method="POST" action="/blog/create">
+                <div class="form-group">
+                    <input type="" class="form-control" name="Title" placeholder="Nhập tiêu đề bài viết">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="Description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="Content" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </section>
+    </main>
+        {{template "footer"}}
+    </body>
+    </html>
+    {{end}}

@@ -1,0 +1,84 @@
+{{define "demo"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu" .user}}
+    <main class="main">
+        <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
+            <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt="">
+        </section>
+        <!-- Content section -->
+        <section class="py-5">
+            <div class="container">
+                <h1>Section Heading</h1>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis repellat architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel itaque amet.</p>
+            </div>
+        </section>
+    </main>
+    {{template "footer"}}
+</body>
+</html>
+{{end}}
+
+{{define "head_lib"}}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{.}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/public/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/public/css/style.css" rel="stylesheet">
+    <link href="/public/css/reponsive.css" rel="stylesheet">
+
+    <script src="/public/assets/jquery/jquery.min.js"></script>
+    <script src="/public/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+{{end}}
+
+{{define "footer"}}
+<footer class="py-5 bg-dark footer">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+    </div>
+    <!-- /.container -->
+</footer>
+{{end}}
+
+{{define "head_menu"}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{{end}}

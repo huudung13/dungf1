@@ -1,0 +1,34 @@
+{{define "blog_index"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu" .user}}
+    <main class="main">
+        <section class="create-post py-2">
+            <div class="container">
+                <div class="row p-0">
+                    <div class="col-2 create">
+                        <a href="/blog/create" class="btn btn-primary">Create</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-image-full" >
+            <section class="container">
+                {{range $blog := $.blogs}}
+                <div class="row">
+                    <div class="col-8">
+                        <h2><a href="/blog/view/{{$blog.ID}}">{{$blog.Title}}</a></h2>
+                    </div>
+                </div>
+                {{end}}
+            </section>
+        </section>
+    </main>
+    {{template "footer"}}
+</body>
+</html>
+{{end}}
