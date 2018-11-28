@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/go-chi/chi"
+	"github.com/huudung13/dungf1/account"
 	"github.com/huudung13/dungf1/handler"
 	"github.com/huudung13/dungf1/helper"
 	"github.com/huudung13/dungf1/models"
@@ -17,6 +18,11 @@ func main() {
 	workDir, _ := os.Getwd()
 	filesDir := filepath.Join(workDir, "public")
 	if err := models.InitModels(); err != nil {
+		fmt.Println("Starting database failed")
+		return
+	}
+
+	if errr := account.InitAccount(); errr != nil {
 		fmt.Println("Starting database failed")
 		return
 	}

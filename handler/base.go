@@ -9,6 +9,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-playground/form"
+	"github.com/huudung13/dungf1/account"
 	"github.com/huudung13/dungf1/helper"
 	"github.com/huudung13/dungf1/models"
 )
@@ -36,12 +37,15 @@ func InitHandler(route *chi.Mux) {
 	route.Route("/blog", func(r chi.Router) {
 		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 			blogs, err := models.GetBlogs()
-			fmt.Println(blogs, err)
-			tmplHelper.Render(w, "blog_index", Map{"blogs": blogs})
+			//fmt.Println(blogs, err)
+			if err == nil {
+				tmplHelper.Render(w, "blog_index", Map{"blogs": blogs})
+			}
+
 		})
 		r.Get("/view/{id:[0-9]+}", func(w http.ResponseWriter, r *http.Request) {
 			BlogID := chi.URLParam(r, "id")
-			blog, err := models.GetOnePost(strconv.Atoi(BlogID)) // Chuyển BlogID từ chuỗi thành số
+			blog, err := models.GetOnePost(strconv.Atoi(BlogID)) // Chuyển BlogID từ string thành int
 
 			if err == nil {
 				tmplHelper.Render(w, "blog_view", Map{"blog": blog})
@@ -92,6 +96,35 @@ func InitHandler(route *chi.Mux) {
 			models.DeleteOnePost(strconv.Atoi(BlogID))
 			http.Redirect(w, r, "/blog", 302)
 		})
+		//-------------------Func for account----------------------------------------------
+		r.Get("/resign", func(w http.ResponseWriter, r *http.Request) {
+			tmplHelper.Render(w, "blog_resign", Map{"acc": account.Account{}})
+		})
+		r.Post("/resign", func(w http.ResponseWriter, r *http.Request) {
+			// Code nhan gia tri tu form va luu tru vao database
+
+			r.ParseForm()
+			acc := account.Account{
+				Username: r.FormValue("Username"),
+				Password: r.FormValue("Password"),
+			}
+			acc.Resign()
+			accounts, err := account.GetAccount()
+			fmt.Println(accounts, err)
+			http.Redirect(w, r, "/blog", 302)
+		})
+		r.Post("/login", func(w http.ResponseWriter, r *http.Request) {
+			r.ParseForm()
+			login := account.Account{
+				Username: r.FormValue("username"),
+				Password: r.FormValue("password"),
+			}
+			username := login.Username
+			password := login.Password
+			//fmt.Println(username, password)
+			account.Login(username, password)
+		})
+
 	})
 }
 

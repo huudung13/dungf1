@@ -22,32 +22,6 @@ func InitModels() (err error) {
 	return
 }
 
-// mỗi lần gorun lại reset database
-// func initData() {
-// 	db.Drop(&Blog{})
-// 	blogs := []Blog{
-// 		{
-// 			ID:          1,
-// 			Description: "Day la desc bai1",
-// 			Title:       "Day la tittle bai1",
-// 			Content:     "Day la content bai1",
-// 		}, {
-// 			ID:          2,
-// 			Description: "Day la desc bai2",
-// 			Title:       "Day la tittle bai2",
-// 			Content:     "Day la content bai2",
-// 		}, {
-// 			ID:          3,
-// 			Description: "Day la desc bai3",
-// 			Title:       "Day la tittle bai3",
-// 			Content:     "Day la content bai3",
-// 		},
-// 	}
-// 	for _, blog := range blogs {
-// 		err := db.Save(&blog)
-// 		fmt.Println(blog, err)
-// 	}
-// }
 func (b *Blog) Create() error {
 	return db.Save(b)
 }

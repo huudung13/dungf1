@@ -36,3 +36,7 @@
 [[constraint]]
   name = "github.com/go-chi/chi"
   version = "3.3.3"
+
+[[constraint]]
+  name = "github.com/kataras/go-sessions"
+  version = "3.1.0"
