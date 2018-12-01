@@ -5,7 +5,7 @@
 {{template "head_lib" "Demo"}}
 </head>
 <body>
-    {{template "head_menu" .user}}
+    {{template "head_menu"}}
     <main class="main">
         <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
             <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt="">
@@ -81,4 +81,43 @@
         </div>
     </div>
 </nav>
+{{end}}
+
+{{define "login_viewer"}}
+{{if ne $.user.UserName ""}}
+<section class="loggin-resign py-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h2>chúc mừng {{$.user.UserName}} đã đăng nhập thành công</h2>
+            </div>
+            <div class="col-2">
+                <a href="/session/delete" class="btn btn-primary">Log Out</a>
+            </div>
+        </div>
+    </div>
+</section>
+{{else}}
+<section class="loggin-resign py-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-4 offset-8">
+                <form method="post" action="/auth/login">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User</label>
+                        <input type="text" class="form-control" name="username">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+                    <a href="/auth/resign" class="btn btn-secondary">Đăng ký</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}
 {{end}}

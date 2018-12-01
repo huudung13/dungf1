@@ -5,29 +5,10 @@
 {{template "head_lib" "Demo"}}
 </head>
 <body>
-    {{template "head_menu" .user}}
+    {{template "head_menu"}}
     <main class="main">
-        <section class="loggin-resign py-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4 offset-8">
-                        <form method="post" action="/blog/login">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">User</label>
-                                <input type="text" class="form-control" name="username">
-                                
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
-                            <a href="/blog/resign" class="btn btn-secondary">Đăng ký</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+       
+        {{template "login_viewer" .}}
         <section class="create-post py-2">
             <div class="container">
                 <div class="row p-0">

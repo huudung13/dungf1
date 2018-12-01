@@ -1,0 +1,37 @@
+{{define "blog_resign"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu" .user}}
+    <main class="main">
+        <section class="loggin-resign py-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 offset-8">
+                        <form method="post" action="/auth/resign">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">User</label>
+                                <input type="" class="form-control" name="Username">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" name="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+      
+    </main>
+    {{template "footer"}}
+</body>
+</html>
+{{end}}
