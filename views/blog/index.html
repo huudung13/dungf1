@@ -5,30 +5,38 @@
 {{template "head_lib" "Demo"}}
 </head>
 <body>
-    {{template "head_menu"}}
+    {{template "head_menu" .}}
     <main class="main">
        
         {{template "login_viewer" .}}
-        <section class="create-post py-2">
-            <div class="container">
-                <div class="row p-0">
-                    <div class="col-2 create">
-                        <a href="/blog/create" class="btn btn-primary">Create</a>
+        <article class="py-5">
+            <section class="create-post py-1">
+                <div class="container">
+                    <div class="row p-0">
+                            {{if ne $.user.Level 0}}
+                        <div class="col-7 create  offset-5">
+                                <a href="/blog/create" class="btn btn-warning">Create</a>
+                        </div>
+                        {{else}}
+                        <div class="col-12 text-center">
+                                <h5 class="text-center text-uppercase">bạn ko có quyền tạo bài viết</h5>
+                        </div>
+                        {{end}}
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="py-5 bg-image-full" >
-            <section class="container">
-                {{range $blog := $.blogs}}
-                <div class="row">
-                    <div class="col-8">
-                        <h2><a href="/blog/view/{{$blog.ID}}">{{$blog.Title}}</a></h2>
-                    </div>
-                </div>
-                {{end}}
             </section>
-        </section>
+            <section class="py-1 bg-image-full" >
+                <section class="container">
+                    {{range $blog := $.blogs}}
+                    <div class="row baiviet">
+                        <div class="col-8">
+                            <h4><a href="/blog/view/{{$blog.ID}}">{{$blog.Title}}</a></h2>
+                        </div>
+                    </div>
+                    {{end}}
+                </section>
+            </section>
+        </article>
     </main>
     {{template "footer"}}
 </body>

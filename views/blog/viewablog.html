@@ -17,8 +17,12 @@
                           <div> 
                               <p>{{$blog.Content}}</p>
                           </div>
+                             {{if ne $.user.Level 0}}
                             <a href="/blog/edit/{{$blog.ID}}" class="btn btn-primary">Edit The Post</a>
                             <a href="/blog/delete/{{$blog.ID}}" class="btn btn-secondary">Delete The Tost</a>
+                            {{else}}
+                            <h3>Bạn ko có quyền sửa hoặc xóa bài viết</h3>
+                            {{end}}
                         </div>
                         <div class="col-md-3">
                           <!-- Sidebar - khu vực chứa widget -->

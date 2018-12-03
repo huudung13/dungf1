@@ -71,12 +71,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      v4.1
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+                      <a class="dropdown-item" href="https://getbootstrap.com/docs/3.3/">v3.3.7</a>
+                      <a class="dropdown-item" href="https://getbootstrap.com/2.3.2/">v2.3.2</a>
+                    </div>
+                  </li>
             </ul>
         </div>
     </div>
@@ -87,14 +90,31 @@
 {{if ne $.user.UserName ""}}
 <section class="loggin-resign py-1">
     <div class="container">
+        {{if eq $.user.Level 0}}
         <div class="row">
-            <div class="col-8 offset-2">
-                <h2>chúc mừng {{$.user.UserName}} đã đăng nhập thành công</h2>
+            <div class="col-8">
+                <h5 class="text-center">chúc mừng {{$.user.UserName}} đã đăng nhập thành công</h5>
             </div>
-            <div class="col-2">
-                <a href="/session/delete" class="btn btn-primary">Log Out</a>
+            <div class="col-1 offset-1">
+                <a href="/session/delete" class="btn btn-secondary">Log Out</a>
+            </div>
+            <div class="col-1 offset-1">
+                    <a href="/auth/myinfo/{{$.user.ID}}" class="btn btn-primary">My Info</a>
+                </div>
+        </div>
+        {{else}}
+        <div class="row">
+            <div class="col-8">
+                <h5 class="text-center">chúc mừng {{$.user.UserName}} đã đăng nhập thành công</h5>
+            </div>
+            <div class="col-1 offset-1">
+                <a href="/session/delete" class="btn btn-secondary">Log Out</a>
+            </div>
+            <div class="col-1 offset-1">
+                <a href="/auth/showuser" class="btn btn-primary">List User</a>
             </div>
         </div>
+        {{end}}
     </div>
 </section>
 {{else}}
@@ -102,19 +122,8 @@
     <div class="container">
         <div class="row">
             <div class="col-4 offset-8">
-                <form method="post" action="/auth/login">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">User</label>
-                        <input type="text" class="form-control" name="username">
-                        
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+                    <a href="/auth/login" class="btn btn-primary">Đăng Nhập</a>
                     <a href="/auth/resign" class="btn btn-secondary">Đăng ký</a>
-                </form>
             </div>
         </div>
     </div>

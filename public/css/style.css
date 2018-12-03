@@ -39,3 +39,24 @@ body {
     -o-background-size: cover;
 }
 
+.baiviet{
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 1px 1px #888888;
+    padding: 10px;
+    margin: 10px
+}
+.baiviet h4 a{
+    color: #23497C;
+}
+.baiviet h4 a:hover {
+    text-decoration: none;  
+}
+.loggin-resign h5{
+    text-align: center;
+    text-transform: uppercase;
+    padding: 10px;
+    margin: 10px;
+    color: #23497C;
+}

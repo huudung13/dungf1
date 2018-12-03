@@ -23,7 +23,7 @@ func main() {
 		fmt.Println("Starting database failed")
 		return
 	}
-
+	///models.AccountKhoiTao() //khoi tao accc admin: huudung13/123
 	handler.InitHandler(router)
 	//handler.SessionRoute(router)
 
