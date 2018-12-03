@@ -1,0 +1,31 @@
+{{define "show_user"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu"}}
+    <main class="main">
+       
+        {{template "login_viewer" .}}
+        {{if eq $.user.Level 2}}
+        <section class="py-5 bg-image-full" >
+            <section class="container">
+                {{range $alluser := $.users}}
+                <div class="row">
+                    <div class="col-8">
+                        <h2><a href="/auth/acc/{{$alluser.ID}}">{{$alluser.UserName}}</a></h2>
+                    </div>
+                </div>
+                {{end}}
+            </section>
+        </section>
+        {{else}}
+        <h2>Bạn chưa được phân quyền vào trang này</h2>
+        {{end}}
+    </main>
+    {{template "footer"}}
+</body>
+</html>
+{{end}}

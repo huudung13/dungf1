@@ -1,0 +1,40 @@
+{{define "myinfo"}}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+{{template "head_lib" "Demo"}}
+</head>
+<body>
+    {{template "head_menu"}}
+    <main class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 offset-8">
+                        {{$user := $.user}}
+                    <form method="post" action="/auth/myinfo/{{$user.ID}}">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Displayname</label>
+                            <input type="" class="form-control" name="DisplayName" value="{{$user.DisplayName}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Description</label>
+                            <input type="" class="form-control" name="Description" value="{{$user.Description}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="" class="form-control" name="Password" value="{{$user.Password}}">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    {{template "footer"}}
+</body>
+</html>
+{{end}}
