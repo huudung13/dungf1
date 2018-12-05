@@ -23,53 +23,7 @@ func main() {
 		fmt.Println("Starting database failed")
 		return
 	}
-	///models.AccountKhoiTao() //khoi tao accc admin: huudung13/123
 	handler.InitHandler(router)
-	//handler.SessionRoute(router)
-
 	fmt.Println("The server is running on port 8080")
 	http.ListenAndServe(":8080", router)
-
 }
-
-// package main
-
-// import (
-// 	"fmt"
-// 	"html/template"
-// 	"log"
-// 	"os"
-// 	"strings"
-// )
-
-// func main() {
-// 	const (
-// 		master = `Names:{{block "list" .}}
-// 		{{"\n"}}
-// 		{{range .}}
-// 		{{println "-" .}}
-// 		{{end}}
-// 		{{end}}`
-// 		overlay = `{{define "list"}} {{join . ", "}}{{end}} `
-// 	)
-// 	var (
-// 		funcs     = template.FuncMap{"join": strings.Join}
-// 		guardians = []string{"Gamora", "Groot", "Nebula", "Rocket", "Star-Lord"}
-// 	)
-// 	fmt.Println(funcs)
-// 	fmt.Println(guardians)
-// 	masterTmpl, err := template.New("master").Funcs(funcs).Parse(master)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	overlayTmpl, err := template.Must(masterTmpl.Clone()).Parse(overlay)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	if err := masterTmpl.Execute(os.Stdout, guardians); err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	if err := overlayTmpl.Execute(os.Stdout, guardians); err != nil {
-// 		log.Fatal(err)
-// 	}
-// }

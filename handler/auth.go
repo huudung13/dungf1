@@ -11,15 +11,18 @@ import (
 
 func authRouter(route chi.Router) {
 	route.Route("/", func(r chi.Router) {
-		r.Get("/resign", func(w http.ResponseWriter, r *http.Request) {
+		r.Get("/register", func(w http.ResponseWriter, r *http.Request) {
 			user, _ := sess.Start(w, r).Get(UserSessionKey).(models.Account)
-			tmplHelper.Render(w, "blog_resign", Map{"user": user})
+			tmplHelper.Render(w, "blog_register", Map{"user": user})
 		})
-		r.Post("/resign", func(w http.ResponseWriter, r *http.Request) {
+		r.Post("/register", func(w http.ResponseWriter, r *http.Request) {
 			r.ParseForm()
 			acc := models.Account{
-				UserName: r.FormValue("Username"),
-				Password: r.FormValue("Password"),
+				UserName:    r.FormValue("UserName"),
+				Password:    r.FormValue("Password"),
+				DisplayName: r.FormValue("DisplayName"),
+				Description: r.FormValue("Description"),
+				Email:       r.FormValue("Email"),
 			}
 			acc.Resign()
 			//models.GetAccount()
@@ -34,6 +37,7 @@ func authRouter(route chi.Router) {
 				if user.Password == r.FormValue("password") {
 					store := sess.Start(w, r)
 					store.Set(UserSessionKey, user)
+
 					http.Redirect(w, r, "/blog", 302) //chuyển trang la login thanh cong
 				} else {
 					w.Write([]byte(fmt.Sprintf("sai mat khau roi")))
@@ -48,15 +52,12 @@ func authRouter(route chi.Router) {
 			tmplHelper.Render(w, "show_user", Map{"users": users, "user": user})
 		})
 
-		r.Get("/acc/{id:[0-9]+}", func(w http.ResponseWriter, r *http.Request) {
+		r.Get("/setuser/{id:[0-9]+}", func(w http.ResponseWriter, r *http.Request) {
 
 			if usersess, _ := sess.Start(w, r).Get(UserSessionKey).(models.Account); usersess.Level == 2 {
-				UserID := chi.URLParam(r, "id")
-				user, err := models.GetByUserID(strconv.Atoi(UserID)) // Chuyển BlogID từ string thành int
 
-				if err == nil {
-					tmplHelper.Render(w, "set_user", Map{"user": user})
-				}
+				tmplHelper.Render(w, "set_user", Map{"user": usersess})
+
 			} else {
 				w.Write([]byte("không có quyền quản trị"))
 			}
@@ -73,6 +74,7 @@ func authRouter(route chi.Router) {
 				DisplayName: r.FormValue("DisplayName"),
 				Description: r.FormValue("Description"),
 				Password:    r.FormValue("Password"),
+				Email:       r.FormValue("Email"),
 				Level:       level,
 			}
 
@@ -101,6 +103,7 @@ func authRouter(route chi.Router) {
 				DisplayName: r.FormValue("DisplayName"),
 				Description: r.FormValue("Description"),
 				Password:    r.FormValue("Password"),
+				Email:       r.FormValue("Email"),
 				//Level:       level,
 			}
 
@@ -114,5 +117,6 @@ func authRouter(route chi.Router) {
 
 			http.Redirect(w, r, "/auth/showuser", 302)
 		})
+
 	})
 }

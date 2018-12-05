@@ -7,19 +7,14 @@
 <body>
     {{template "head_menu" .}}
     <main class="main">
-       
-        {{template "login_viewer" .}}
+
         <article class="py-5">
             <section class="create-post py-1">
                 <div class="container">
                     <div class="row p-0">
-                            {{if ne $.user.Level 0}}
+                        {{if ne $.user.Level 0}}
                         <div class="col-7 create  offset-5">
-                                <a href="/blog/create" class="btn btn-warning">Create</a>
-                        </div>
-                        {{else}}
-                        <div class="col-12 text-center">
-                                <h5 class="text-center text-uppercase">bạn ko có quyền tạo bài viết</h5>
+                                <a href="/blog/create" class="btn btn-bd-download d-none d-lg-inline-block col-3 offset-9">Create</a>
                         </div>
                         {{end}}
                     </div>
@@ -27,13 +22,14 @@
             </section>
             <section class="py-1 bg-image-full" >
                 <section class="container">
-                    {{range $blog := $.blogs}}
-                    <div class="row baiviet">
-                        <div class="col-8">
-                            <h4><a href="/blog/view/{{$blog.ID}}">{{$blog.Title}}</a></h2>
-                        </div>
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            {{range $blog := $.blogs}}
+                            <li class="list-group-item"><a href="/blog/view/{{$blog.ID}}">{{$blog.Title}}</a></li>
+                            {{end}}
+                        </ul>
                     </div>
-                    {{end}}
+                    
                 </section>
             </section>
         </article>

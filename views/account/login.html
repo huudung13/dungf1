@@ -5,7 +5,7 @@
 {{template "head_lib" "Demo"}}
 </head>
 <body>
-    {{template "head_menu"}}
+    {{template "head_menu" .}}
     <main class="main">
         <div class="container">
             <div class="row">
@@ -23,7 +23,7 @@
                             <input type="password" class="form-control" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary">Đăng Nhập</button>
-                        <a href="/auth/resign" class="btn btn-secondary">Đăng ký</a>
+                        <a href="/auth/register" class="btn btn-secondary">Đăng ký</a>
                     </form>
                 </div>
             </div>

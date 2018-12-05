@@ -11,6 +11,7 @@ type (
 		DisplayName string
 		Password    string
 		Description string
+		Email       string
 		Level       int
 	}
 )

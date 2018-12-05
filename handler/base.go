@@ -28,12 +28,13 @@ func init() {
 
 func InitHandler(route *chi.Mux) {
 	route.Get("/", func(w http.ResponseWriter, r *http.Request) {
-
-		tmplHelper.Render(w, "home", Map{"user": models.Blog{}})
+		tmplHelper.Render(w, "home", Map{"user": models.Account{}})
 	})
+	route.Post("/upload/awata", uploadFile)
 	route.Route("/blog", blogRouter)
 	route.Route("/session", sessionRoute)
 	route.Route("/auth", authRouter)
+
 }
 
 func funcMap() template.FuncMap {

@@ -5,20 +5,40 @@
 {{template "head_lib" "Demo"}}
 </head>
 <body>
-    {{template "head_menu"}}
+    {{template "head_menu" .}}
     <main class="main">
-       
-        {{template "login_viewer" .}}
+            
         {{if eq $.user.Level 2}}
         <section class="py-5 bg-image-full" >
             <section class="container">
-                {{range $alluser := $.users}}
-                <div class="row">
-                    <div class="col-8">
-                        <h2><a href="/auth/acc/{{$alluser.ID}}">{{$alluser.UserName}}</a></h2>
+               
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <table class="table card-table">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Display Name</th>
+                                        <th>Email</th>
+                                        <th>Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        {{range $user := $.users}}
+                                    <tr>
+                                        <td><a href="/auth/setuser/{{$user.ID}}">{{$user.UserName}}</a></td>
+                                        <td>{{$user.DisplayName}}</td>
+                                        <td>{{$user.Email}}</td>
+                                        <td>{{$user.Level}}</td>
+                                    </tr>
+                                        {{end}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                {{end}}
+            
             </section>
         </section>
         {{else}}

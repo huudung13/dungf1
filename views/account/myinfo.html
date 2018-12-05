@@ -5,11 +5,27 @@
 {{template "head_lib" "Demo"}}
 </head>
 <body>
-    {{template "head_menu"}}
+    {{template "head_menu" .}}
     <main class="main">
         <div class="container">
             <div class="row">
-                <div class="col-4 offset-8">
+                <div class="col-4">
+                    <div class="awata-image col-12">
+                        <img src="" class="img awata">
+                    </div>
+                    <div class="form-upload">
+                        <form action="" method="post" enctype="multipart/form-data" class="uploadForm">
+                            <input class="uploadForm__input" type="file" name="file" id="inputFile" accept="image/*">
+                            <label class="uploadForm__label" for="inputFile">
+                                <i class="fa fa-upload uploadForm__icon"></i> Select a file
+                            </label>
+                            <div class="notification" id="alert"></div>
+                        </form>
+                    </div>
+                    <div class="notification" id="alert"></div>
+
+                </div>
+                <div class="col-4 offset-2">
                         {{$user := $.user}}
                     <form method="post" action="/auth/myinfo/{{$user.ID}}">
 

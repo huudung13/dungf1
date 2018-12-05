@@ -39,9 +39,11 @@
     <!-- Custom styles for this template -->
     <link href="/public/css/style.css" rel="stylesheet">
     <link href="/public/css/reponsive.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/public/assets/jquery/jquery.min.js"></script>
     <script src="/public/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- upload file awata (3 file js) -->
+
 </head>
 {{end}}
 
@@ -52,81 +54,52 @@
     </div>
     <!-- /.container -->
 </footer>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/public/js/api.js"></script>
+<script src="/public/js/app.js"></script>
+
 {{end}}
 
 {{define "head_menu"}}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
+                {{if ne .user.UserName ""}}
+                    {{if eq .user.Level 2}}
                 <li class="nav-item dropdown">
-                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      v4.1
+                    <a class="nav-link" href="/auth/showuser">User</a>
+                </li>
+                    {{end}}
+                <li class="nav-item dropdown">
+                    <a class="nav-item nav-link dropdown-toggle mr-md-2" href="" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     {{.user.UserName}}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
-                      <a class="dropdown-item" href="https://getbootstrap.com/docs/3.3/">v3.3.7</a>
-                      <a class="dropdown-item" href="https://getbootstrap.com/2.3.2/">v2.3.2</a>
+                      <a href="/session/logout" class="dropdown-item">Log Out</a>                    
+                      <a href="/auth/myinfo/{{$.user.ID}}" class="dropdown-item">Change info</a>
                     </div>
-                  </li>
+                </li>
+                {{else}}
+                <li class="nav-item dropdown">
+                    <a href="/auth/login" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item dropdown">
+                        <a href="/auth/register" class="nav-link">Register</a>
+                </li>
+                {{end}}
             </ul>
         </div>
     </div>
 </nav>
 {{end}}
 
-{{define "login_viewer"}}
-{{if ne $.user.UserName ""}}
-<section class="loggin-resign py-1">
-    <div class="container">
-        {{if eq $.user.Level 0}}
-        <div class="row">
-            <div class="col-8">
-                <h5 class="text-center">chúc mừng {{$.user.UserName}} đã đăng nhập thành công</h5>
-            </div>
-            <div class="col-1 offset-1">
-                <a href="/session/delete" class="btn btn-secondary">Log Out</a>
-            </div>
-            <div class="col-1 offset-1">
-                    <a href="/auth/myinfo/{{$.user.ID}}" class="btn btn-primary">My Info</a>
-                </div>
-        </div>
-        {{else}}
-        <div class="row">
-            <div class="col-8">
-                <h5 class="text-center">chúc mừng {{$.user.UserName}} đã đăng nhập thành công</h5>
-            </div>
-            <div class="col-1 offset-1">
-                <a href="/session/delete" class="btn btn-secondary">Log Out</a>
-            </div>
-            <div class="col-1 offset-1">
-                <a href="/auth/showuser" class="btn btn-primary">List User</a>
-            </div>
-        </div>
-        {{end}}
-    </div>
-</section>
-{{else}}
-<section class="loggin-resign py-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-4 offset-8">
-                    <a href="/auth/login" class="btn btn-primary">Đăng Nhập</a>
-                    <a href="/auth/resign" class="btn btn-secondary">Đăng ký</a>
-            </div>
-        </div>
-    </div>
-</section>
-{{end}}
-{{end}}
